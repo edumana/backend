@@ -7,11 +7,11 @@ class Author(models.Model):
     def __str__(self):
         return self.name
     
-# Create your models here.
+
 class Book(models.Model):
-    title = models.CharField(max_length=255)
+    title = models.CharField(max_length=255, unique=True)
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
-    published_date = models.DateField()
+    published_date = models.DateField(blank=False)
     edition = models.IntegerField(blank=True, default='1')
     cover_image = models.ImageField(upload_to='covers/', null=True, blank=True)
     language = models.CharField(max_length=10, blank=True, default='')
